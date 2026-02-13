@@ -1,0 +1,1044 @@
+/* ============================================
+   VALENTINE WEBSITE - MOBILE-FIRST STYLES
+   ============================================ */
+
+/* CSS Variables for Romantic Color Palette */
+:root {
+    --bg-gradient-start: #1a0a1a;
+    --bg-gradient-end: #2d0f2d;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 182, 193, 0.2);
+    --primary-pink: #ff69b4;
+    --primary-burgundy: #8b1538;
+    --accent-pink: #ffb6c1;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --text-muted: rgba(255, 255, 255, 0.6);
+    --shadow-glow: rgba(255, 105, 180, 0.3);
+    --shadow-strong: rgba(255, 105, 180, 0.5);
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--text-primary);
+    position: relative;
+}
+
+/* ============================================
+   TYPOGRAPHY - ROMANTIC & ELEGANT
+   ============================================ */
+
+/* Headings - Playfair Display (Romantic, Expressive) */
+.title,
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+}
+
+/* Body Text - Poppins (Clean, Readable) */
+body,
+p,
+.subtext,
+.caption,
+.question,
+.answer-input,
+.btn,
+.final-message {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.2px;
+}
+
+/* Enhanced Typography Spacing */
+.title {
+    letter-spacing: 0.8px;
+}
+
+.subtext {
+    letter-spacing: 0.3px;
+    font-weight: 300;
+}
+
+.caption {
+    letter-spacing: 0.3px;
+    font-weight: 300;
+}
+
+.final-message {
+    letter-spacing: 0.3px;
+    font-weight: 300;
+}
+
+.signature {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Heart Pattern Background - Base Layer + Highlight Layer */
+.heart-pattern-layers {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Base heart layer styles */
+.heart-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Base Layer: Static hearts always visible (low opacity texture) */
+.heart-layer.layer-1 {
+    /* Base heart color - always visible, subtle */
+    background-color: rgba(255, 105, 180, 0.08);
+    /* Classic heart shape ❤️ - symmetrical top lobes + pointed bottom */
+    /* SVG path creates perfect heart silhouette matching ❤️ symbol */
+    mask-image: url("data:image/svg+xml,%3Csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25,10 C25,10 18,3 15,3 C12,3 10,5 10,8 C10,11 12,13 15,16 C18,19 25,26 25,26 C25,26 32,19 35,16 C38,13 40,11 40,8 C40,5 38,3 35,3 C32,3 25,10 25,10 Z M25,26 L10,40 L25,50 L40,40 Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25,10 C25,10 18,3 15,3 C12,3 10,5 10,8 C10,11 12,13 15,16 C18,19 25,26 25,26 C25,26 32,19 35,16 C38,13 40,11 40,8 C40,5 38,3 35,3 C32,3 25,10 25,10 Z M25,26 L10,40 L25,50 L40,40 Z' fill='black'/%3E%3C/svg%3E");
+    mask-size: 50px 50px;
+    -webkit-mask-size: 50px 50px;
+    mask-repeat: repeat;
+    -webkit-mask-repeat: repeat;
+    /* No animation - always visible */
+    opacity: 1;
+}
+
+/* Highlight Layer: Animated diagonal gradient that brightens hearts */
+.heart-layer.layer-2 {
+    /* Diagonal gradient that moves across hearts (bottom-left → top-right) */
+    /* Soft highlight band that flows diagonally */
+    background-image: 
+        linear-gradient(
+            120deg,
+            transparent 0%,
+            transparent 35%,
+            rgba(255, 105, 180, 0.08) 45%,
+            rgba(255, 182, 193, 0.10) 50%,
+            rgba(255, 105, 180, 0.07) 55%,
+            transparent 65%,
+            transparent 100%
+        );
+    /* Large background size for smooth gradient wave across many hearts */
+    background-size: 100px 100px;
+    background-repeat: repeat;
+    /* Same heart mask - highlights the same hearts */
+    mask-image: url("data:image/svg+xml,%3Csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25,10 C25,10 18,3 15,3 C12,3 10,5 10,8 C10,11 12,13 15,16 C18,19 25,26 25,26 C25,26 32,19 35,16 C38,13 40,11 40,8 C40,5 38,3 35,3 C32,3 25,10 25,10 Z M25,26 L10,40 L25,50 L40,40 Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25,10 C25,10 18,3 15,3 C12,3 10,5 10,8 C10,11 12,13 15,16 C18,19 25,26 25,26 C25,26 32,19 35,16 C38,13 40,11 40,8 C40,5 38,3 35,3 C32,3 25,10 25,10 Z M25,26 L10,40 L25,50 L40,40 Z' fill='black'/%3E%3C/svg%3E");
+    mask-size: 50px 50px;
+    -webkit-mask-size: 50px 50px;
+    mask-repeat: repeat;
+    -webkit-mask-repeat: repeat;
+    /* Animate gradient position diagonally - single wave across all hearts */
+    /* Hearts stay fixed, only the highlight band moves */
+    animation: heartDiagonalWave 18s linear infinite;
+    /* Blend mode to add brightness to base layer */
+    mix-blend-mode: screen;
+    opacity: 1;
+}
+
+/* Hide unused layer */
+.heart-layer.layer-3 {
+    display: none;
+}
+
+/* Diagonal gradient wave animation - bottom-left to top-right */
+/* Single unified wave moves across all hearts simultaneously */
+/* Only the gradient highlight moves, hearts remain completely static */
+@keyframes heartDiagonalWave {
+    0% {
+        background-position: -250px 250px;
+    }
+    100% {
+        background-position: 250px -250px;
+    }
+}
+
+/* Floating Hearts Background Animation */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    opacity: 0.3;
+    animation: float 15s infinite ease-in-out;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 16px;
+    background: var(--primary-pink);
+    border-radius: 10px 10px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 8px;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.heart:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 12s;
+}
+
+.heart:nth-child(2) {
+    left: 30%;
+    animation-delay: 2s;
+    animation-duration: 18s;
+}
+
+.heart:nth-child(3) {
+    left: 50%;
+    animation-delay: 4s;
+    animation-duration: 14s;
+}
+
+.heart:nth-child(4) {
+    left: 70%;
+    animation-delay: 6s;
+    animation-duration: 16s;
+}
+
+.heart:nth-child(5) {
+    left: 90%;
+    animation-delay: 8s;
+    animation-duration: 20s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-100px) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Screen Management */
+.screen {
+    display: none;
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Card Styles - No background, content floats on page */
+.card {
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    border-radius: 0;
+    padding: 32px 24px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: none;
+    animation: cardSlideIn 0.6s ease-out;
+}
+
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.final-card {
+    max-width: 500px;
+    animation: cardSlideIn 0.8s ease-out;
+}
+
+/* Typography */
+.title {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5),
+                 0 0 20px rgba(0, 0, 0, 0.3),
+                 0 2px 10px var(--shadow-glow);
+    letter-spacing: 0.8px;
+    line-height: 1.3;
+}
+
+.subtext {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-weight: 300;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+.question {
+    font-size: 20px;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-weight: 500;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5),
+                 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.caption {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin: 24px 0;
+    font-style: italic;
+    line-height: 1.6;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Input & Button Styles */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.answer-input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--card-border);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.answer-input:focus {
+    border-color: var(--primary-pink);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 20px var(--shadow-glow);
+}
+
+.answer-input::placeholder {
+    color: var(--text-muted);
+}
+
+.btn {
+    padding: 14px 32px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: none;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-burgundy) 100%);
+    color: var(--text-primary);
+    box-shadow: 0 4px 15px var(--shadow-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-strong);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid var(--card-border);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Hint Message */
+.hint {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-top: 8px;
+    transition: all 0.3s ease;
+}
+
+.hint.error {
+    background: rgba(255, 69, 58, 0.2);
+    border: 1px solid rgba(255, 69, 58, 0.4);
+    color: #ffb3b3;
+}
+
+.hint.success {
+    background: rgba(52, 199, 89, 0.2);
+    border: 1px solid rgba(52, 199, 89, 0.4);
+    color: #b3ffb3;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Memories Grid (Heart-shaped Layout) */
+.memories-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 4px;
+    margin: 24px -15px;
+    max-width: 320px;
+    justify-items: center;
+    align-items: start;
+    position: relative;
+    transform: translateX(-8px); /* Shift left to center the heart shape */
+}
+
+.memory-item {
+    aspect-ratio: 1;
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    animation: floatPhoto 4.5s ease-in-out infinite;
+}
+
+.memory-item:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 15px var(--shadow-glow);
+}
+
+.memory-placeholder {
+    font-size: 32px;
+    opacity: 0.6;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Row 1: 2 photos - FAR LEFT and FAR RIGHT with clear center gap */
+.memory-item-row1-left {
+    grid-column: 2;
+    grid-row: 1;
+    --base-x: -20px;
+    transform: translateX(var(--base-x));
+    animation-delay: 0s;
+}
+
+.memory-item-row1-right {
+    grid-column: 4;
+    grid-row: 1;
+    --base-x: 20px;
+    transform: translateX(var(--base-x));
+    animation-delay: 0.6s;
+}
+
+/* Row 2: 3 photos - middle photo RAISED (top curve of heart) */
+.memory-item-row2-left {
+    grid-column: 1;
+    grid-row: 2;
+    --base-x: -12px;
+    transform: translateX(var(--base-x));
+    animation-delay: 1.2s;
+}
+
+.memory-item-row2-center {
+    grid-column: 3;
+    grid-row: 2;
+    --center-offset: -24px;
+    --base-x: 0px;
+    transform: translateY(var(--center-offset)) translateX(var(--base-x));
+    animation-delay: 1.8s;
+}
+
+.memory-item-row2-right {
+    grid-column: 5;
+    grid-row: 2;
+    --base-x: 12px;
+    transform: translateX(var(--base-x));
+    animation-delay: 2.4s;
+}
+
+/* Row 3: 2 photos - CLOSER TO CENTER than row 1, slightly lower */
+.memory-item-row3-left {
+    grid-column: 2;
+    grid-row: 3;
+    --base-x: -8px;
+    transform: translateX(var(--base-x)) translateY(4px);
+    animation-delay: 3s;
+}
+
+.memory-item-row3-right {
+    grid-column: 4;
+    grid-row: 3;
+    --base-x: 8px;
+    transform: translateX(var(--base-x)) translateY(4px);
+    animation-delay: 3.6s;
+}
+
+/* Row 4: 1 photo - PERFECTLY CENTERED, CLEARLY LOWER (heart point) */
+.memory-item-row4-center {
+    grid-column: 3;
+    grid-row: 4;
+    --bottom-offset: 12px;
+    --base-x: 0px;
+    transform: translateY(var(--bottom-offset)) translateX(var(--base-x));
+    animation-delay: 4.2s;
+}
+
+/* Floating animation for photos - vertical movement only (±5-7px) */
+@keyframes floatPhoto {
+    0%, 100% {
+        transform: translateY(0) translateX(var(--base-x, 0));
+    }
+    50% {
+        transform: translateY(-6px) translateX(var(--base-x, 0));
+    }
+}
+
+/* Special animation for row 2 center (preserves raised position) */
+.memory-item-row2-center {
+    animation-name: floatPhotoCenter;
+}
+
+/* Special animation for row 3 (preserves slight downward offset) */
+.memory-item-row3-left,
+.memory-item-row3-right {
+    animation-name: floatPhotoRow3;
+}
+
+/* Special animation for row 4 (preserves lower position) */
+.memory-item-row4-center {
+    animation-name: floatPhotoBottom;
+}
+
+/* Special animations preserving offsets */
+@keyframes floatPhotoCenter {
+    0%, 100% {
+        transform: translateY(var(--center-offset, -24px)) translateX(var(--base-x, 0));
+    }
+    50% {
+        transform: translateY(calc(var(--center-offset, -24px) - 6px)) translateX(var(--base-x, 0));
+    }
+}
+
+@keyframes floatPhotoRow3 {
+    0%, 100% {
+        transform: translateY(4px) translateX(var(--base-x, 0));
+    }
+    50% {
+        transform: translateY(-2px) translateX(var(--base-x, 0));
+    }
+}
+
+@keyframes floatPhotoBottom {
+    0%, 100% {
+        transform: translateY(var(--bottom-offset, 12px)) translateX(var(--base-x, 0));
+    }
+    50% {
+        transform: translateY(calc(var(--bottom-offset, 12px) - 6px)) translateX(var(--base-x, 0));
+    }
+}
+
+/* Music Player Styles */
+.music-container {
+    margin: 32px 0;
+}
+
+.album-art {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-burgundy) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 30px var(--shadow-strong);
+    border: 4px solid var(--card-border);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 8px 30px var(--shadow-strong);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 12px 40px var(--shadow-strong);
+    }
+}
+
+.album-placeholder {
+    font-size: 64px;
+}
+
+.audio-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.play-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-burgundy) 100%);
+    color: var(--text-primary);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px var(--shadow-glow);
+    transition: all 0.3s ease;
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px var(--shadow-strong);
+}
+
+.play-icon,
+.pause-icon {
+    display: inline-block;
+}
+
+.audio-info {
+    width: 100%;
+    max-width: 280px;
+}
+
+.audio-title {
+    display: block;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-pink) 0%, var(--primary-burgundy) 100%);
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* Final Message Styles */
+.final-message {
+    text-align: left;
+    max-width: 100%;
+    margin: 32px 0;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.final-message p {
+    margin-bottom: 16px;
+    font-size: 16px;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+.signature {
+    text-align: right;
+    margin-top: 24px;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 18px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5),
+                 0 0 15px rgba(0, 0, 0, 0.3);
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================
+   GIF CONTAINERS - SEQUENTIAL ANIMATIONS
+   ============================================ */
+
+.gif-container {
+    position: relative;
+    width: 100%;
+    max-width: 200px;
+    height: 150px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.gif-item {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    border-radius: 12px;
+}
+
+.gif-item.active {
+    opacity: 1;
+}
+
+.gif-item.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.floating-hearts {
+    position: relative;
+    height: 100px;
+    margin-top: 32px;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 24px;
+    animation: floatHeart 4s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+.floating-heart:nth-child(1) {
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.floating-heart:nth-child(2) {
+    left: 50%;
+    animation-delay: 1.3s;
+}
+
+.floating-heart:nth-child(3) {
+    left: 80%;
+    animation-delay: 2.6s;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-60px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Scattered Memory Photos on Final Page */
+.memory-photos-scattered {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.scattered-photo {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 0 3px rgba(255, 192, 203, 0.1);
+    opacity: 0;
+    animation: fadeInScattered 1.2s ease-out forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.scattered-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.scattered-photo:hover {
+    transform: scale(1.1) !important;
+    z-index: 10;
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
+}
+
+@keyframes fadeInScattered {
+    from {
+        opacity: 0;
+        transform: scale(0.7) rotate(0deg);
+    }
+    to {
+        opacity: 0.9;
+        transform: scale(1) rotate(var(--photo-rotation, 0deg));
+    }
+}
+
+/* Ensure content stays above scattered photos */
+.final-card {
+    position: relative;
+    z-index: 1;
+}
+
+.final-card > *:not(.memory-photos-scattered) {
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive Design - Tablet & Desktop */
+@media (min-width: 768px) {
+    .card {
+        padding: 40px 32px;
+        max-width: 480px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .subtext {
+        font-size: 18px;
+    }
+
+    .question {
+        font-size: 22px;
+    }
+
+    .input-group {
+        flex-direction: row;
+    }
+
+    .answer-input {
+        flex: 1;
+    }
+
+    .memories-grid {
+        max-width: 380px;
+        gap: 6px;
+        transform: translateX(-10px); /* Adjust for larger screen */
+    }
+
+    .memory-item {
+        width: 85px;
+        height: 85px;
+    }
+
+    /* Increase offsets proportionally for larger screens */
+    .memory-item-row1-left {
+        --base-x: -24px;
+    }
+
+    .memory-item-row1-right {
+        --base-x: 24px;
+    }
+
+    .memory-item-row2-left {
+        --base-x: -14px;
+    }
+
+    .memory-item-row2-center {
+        --center-offset: -28px;
+    }
+
+    .memory-item-row2-right {
+        --base-x: 14px;
+    }
+
+    .memory-item-row3-left {
+        --base-x: -10px;
+    }
+
+    .memory-item-row3-right {
+        --base-x: 10px;
+    }
+
+    .memory-item-row4-center {
+        --bottom-offset: 14px;
+    }
+
+    .album-art {
+        width: 240px;
+        height: 240px;
+    }
+
+    .final-message p {
+        font-size: 18px;
+    }
+
+    .scattered-photo {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .card {
+        max-width: 520px;
+        padding: 48px 40px;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+
+    .memories-grid {
+        max-width: 420px;
+        gap: 8px;
+        transform: translateX(-12px); /* Adjust for desktop screen */
+    }
+
+    .memory-item {
+        width: 95px;
+        height: 95px;
+    }
+
+    /* Further increase offsets for desktop */
+    .memory-item-row1-left {
+        --base-x: -28px;
+    }
+
+    .memory-item-row1-right {
+        --base-x: 28px;
+    }
+
+    .memory-item-row2-left {
+        --base-x: -16px;
+    }
+
+    .memory-item-row2-center {
+        --center-offset: -32px;
+    }
+
+    .memory-item-row2-right {
+        --base-x: 16px;
+    }
+
+    .memory-item-row3-left {
+        --base-x: -12px;
+    }
+
+    .memory-item-row3-right {
+        --base-x: 12px;
+    }
+
+    .memory-item-row4-center {
+        --bottom-offset: 16px;
+    }
+
+    .scattered-photo {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Smooth Transitions Between Screens */
+.screen.fade-out {
+    animation: fadeOut 0.4s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}

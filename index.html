@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Surprise 💝</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Floating hearts background animation -->
+    <div class="hearts-container">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <!-- Animated heart pattern background layers -->
+    <div class="heart-pattern-layers">
+        <div class="heart-layer layer-1"></div>
+        <div class="heart-layer layer-2"></div>
+        <div class="heart-layer layer-3"></div>
+    </div>
+
+    <!-- Screen 1: Hook / Unlock -->
+    <section id="screen1" class="screen active">
+        <div class="card">
+            <div class="gif-container" data-screen="1">
+                <!-- GIFs loaded dynamically from assets/gifs folder -->
+            </div>
+            <h1 class="title">Unlock a little surprise 💝</h1>
+            <p class="subtext">Quick question to continue</p>
+            <div class="question-container">
+                <p class="question">What is 1 + 2?</p>
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="answerInput" 
+                        class="answer-input" 
+                        placeholder="Your answer..."
+                        autocomplete="off"
+                    >
+                    <button id="unlockBtn" class="btn btn-primary">Unlock</button>
+                </div>
+                <div id="hint" class="hint hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screen 2: Success Transition -->
+    <section id="screen2" class="screen">
+        <div class="card">
+            <div class="gif-container" data-screen="2">
+                <!-- GIFs loaded dynamically from assets/gifs folder -->
+            </div>
+            <h1 class="title">You did it 🥰</h1>
+            <p class="subtext">Here's something special for you…</p>
+        </div>
+    </section>
+
+    <!-- Screen 3: Memories -->
+    <section id="screen3" class="screen">
+        <div class="card">
+            <div class="gif-container" data-screen="3">
+                <!-- GIFs loaded dynamically from assets/gifs folder -->
+            </div>
+            <h1 class="title">Our Moments 💞</h1>
+            <div class="memories-grid">
+                <!-- Row 1: 2 photos (spaced apart, centered as group) -->
+                <div class="memory-item memory-item-row1-left">
+                    <div class="memory-placeholder">📸</div>
+                </div>
+                <div class="memory-item memory-item-row1-right">
+                    <div class="memory-placeholder">📸</div>
+                </div>
+                <!-- Row 2: 3 photos (middle photo higher - top curve of heart) -->
+                <div class="memory-item memory-item-row2-left">
+                    <div class="memory-placeholder">📸</div>
+                </div>
+                <div class="memory-item memory-item-row2-center">
+                    <div class="memory-placeholder">📸</div>
+                </div>
+                <div class="memory-item memory-item-row2-right">
+                    <div class="memory-placeholder">📸</div>
+                </div>
+                <!-- Row 3: 2 photos (closer together than row 1) -->
+                <div class="memory-item memory-item-row3-left">
+                    <div class="memory-placeholder">📸</div>
+                </div>
+                <div class="memory-item memory-item-row3-right">
+                    <div class="memory-placeholder">📸</div>
+                </div>
+                <!-- Row 4: 1 photo (centered, lower - heart point) -->
+                <div class="memory-item memory-item-row4-center">
+                    <div class="memory-placeholder">📸</div>
+                </div>
+            </div>
+            <p class="caption">Little moments with you became my favorite memories</p>
+            <button class="btn btn-primary" onclick="showScreen(4)">Next</button>
+        </div>
+    </section>
+
+    <!-- Screen 4: Music -->
+    <section id="screen4" class="screen">
+        <div class="card">
+            <div class="gif-container" data-screen="4">
+                <!-- GIFs loaded dynamically from assets/gifs folder -->
+            </div>
+            <h1 class="title">Our Song 🎧</h1>
+            <p class="subtext">Close your eyes… this one is for you</p>
+            <div class="music-container">
+                <div class="album-art">
+                    <div class="album-placeholder">🎵</div>
+                </div>
+                <div class="audio-player">
+                    <audio id="valentineAudio" preload="metadata">
+                        <!-- Audio source loaded dynamically from MUSIC config -->
+                        Your browser does not support the audio element.
+                    </audio>
+                    <button id="playPauseBtn" class="play-btn">
+                        <span class="play-icon">▶</span>
+                        <span class="pause-icon hidden">⏸</span>
+                    </button>
+                    <div class="audio-info">
+                        <span class="audio-title">Our Special Song</span>
+                        <div class="progress-bar">
+                            <div id="progress" class="progress"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="showScreen(5)">Next</button>
+        </div>
+    </section>
+
+    <!-- Screen 5: Final Message -->
+    <section id="screen5" class="screen">
+        <div class="card final-card">
+            <div class="gif-container" data-screen="5">
+                <!-- GIFs loaded dynamically from assets/gifs folder -->
+            </div>
+            <h1 class="title">Happy Valentine's Day 💖</h1>
+            <div class="final-message">
+                <p>Every day with you feels like a celebration. You bring light, laughter, and love into my world in ways I never imagined possible.</p>
+                <p>Thank you for being you, for being mine, and for making every moment together feel like magic.</p>
+                <p class="signature">With all my love, always ❤️</p>
+            </div>
+            <div class="floating-hearts">
+                <span class="floating-heart">💕</span>
+                <span class="floating-heart">💖</span>
+                <span class="floating-heart">💗</span>
+            </div>
+            <div class="memory-photos-scattered" id="scatteredPhotos">
+                <!-- Memory photos will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
